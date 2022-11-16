@@ -1,5 +1,11 @@
-const { collection, addDoc, getDocs, query } = require("firebase/firestore");
-const { db } = require("../database.js");
+const {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+} = require("firebase/firestore");
+const { db, firebaseApp } = require("../database.js");
 
 // add book
 exports.addBook = async (req, res) => {
@@ -33,3 +39,10 @@ exports.getBooks = async (req, res) => {
     console.log(error);
   }
 };
+
+// delete book by title
+// exports.deleteBook = async (req, res) => {
+//   const { title } = req.params.title;
+//   const books = collection(db, "books").where("title", "==", title);
+//   console.log(books);
+// };
