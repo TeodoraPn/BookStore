@@ -1,12 +1,7 @@
-const {
-  collection,
-  addDoc,
-  getDoc,
-  getDocs,
-  query,
-} = require("firebase/firestore");
+const { collection, addDoc, getDocs, query } = require("firebase/firestore");
 const { db } = require("../database.js");
 
+// add book
 exports.addBook = async (req, res) => {
   try {
     const body = req.body;
@@ -22,6 +17,7 @@ exports.addBook = async (req, res) => {
   }
 };
 
+// get all books
 exports.getBooks = async (req, res) => {
   try {
     const booksCollection = collection(db, "books");
