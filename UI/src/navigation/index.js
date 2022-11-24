@@ -7,6 +7,7 @@ import IntroScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Scree
 import SignInScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/SignInScreen/SignInScreen.js';
 import SignUpScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/SignUpScreen/SignUpScreen.js';
 import CustomerHomeScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/CustomerHomeScreen/CustomerHomeScreen.js';
+import SellerHomeScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/SellerHomeScreen/SellerHomeScreen.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const Navigation = () => {
         <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="CustomerHomeScreen" component={CustomerHomeScreen} />
+        <Stack.Screen name="SellerHomeScreen" component={SellerHomeScreen} />
      </Stack.Navigator>
     </NavigationContainer>
   );

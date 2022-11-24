@@ -17,8 +17,14 @@ const IntroScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       
+      <Image source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/Cover.jpg')} style={{ width: 470, height: 470 }} />
+
       <Text style={styles.text}>
           Books are a uniquely portable magic.
+      </Text>
+
+      <Text style={styles.text2}>
+          The best place to buy and sell a book.
       </Text>
 
       <GetStarted text="Get Started" onPress={onGetStartedPressed} />
@@ -37,7 +43,13 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 40,
     textAlign: "center",
-    marginTop: 650,
+    marginTop: 130,
+    color: 'white',
+  },
+  text2: {
+    fontSize: 20,
+    textAlign: "center",
+    marginTop: 25,
     color: 'white',
   },
 });
