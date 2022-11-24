@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, TextInput, Image, ImageBackground, StyleSheet} from 'react-native';
 import CustomInput from '../../components/CustomInput/CustomInput.js';
 import CustomButton from '../../components/CustomButton/CustomButton.js';
+import CustomButton2 from '../../components/CustomButton/CustomButton2.js';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
@@ -15,6 +16,7 @@ const SignUpScreen = () => {
 
   const onSignUpPressed = () => {
     console.warn('Sign up');
+    navigation.navigate('SellerHomeScreen');
     axios
       .post(`http://10.0.2.2:8080/signup`, {email, password})
       .then(res => console.log(JSON.stringify(res.data)))
@@ -26,31 +28,98 @@ const SignUpScreen = () => {
     navigation.navigate('SignIn');
   };
 
-  return (
+return (
     <View style={styles.root}>
-      <CustomInput placeholder="email" value={email} setValue={setEmail} />
-      <CustomInput
+
+    
+    <Image source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/Cover.jpg')} style={styles.image}>
+    </Image>
+
+    <TextInput
+        placeholder="Role"
+        onChangeText={setEmail}
+        style={styles.placeholder}
+        placeholderTextColor="#FFFF"
+      />
+
+      <TextInput
+        placeholder="Username"
+        onChangeText={setEmail}
+        style={styles.placeholder}
+        placeholderTextColor="#FFFF"
+      />
+      
+      <TextInput
+        placeholder="Gmail"
+        onChangeText={setEmail}
+        style={styles.placeholder}
+        placeholderTextColor="#FFFF"
+      />
+
+      <TextInput
         placeholder="Password"
-        value={password}
-        setValue={setPassword}
+        onChangeText={setPassword}
         secureTextEntry={true}
+        style={styles.placeholder}
+        placeholderTextColor="#FFFF"
       />
-      <CustomButton text="Sign Up" onPress={onSignUpPressed} />
-      <CustomButton
-        text="Sign up into your account"
-        onPress={onSignUpIntoAccount}
+
+      <TextInput
+        placeholder="Confirm Password"
+        onChangeText={setPassword}
+        secureTextEntry={true}
+        style={styles.placeholder}
+        placeholderTextColor="#FFFF"
       />
+
+      <CustomButton 
+      text="Sign Up" 
+      onPress={onSignUpPressed} 
+      />
+
+      <CustomButton2 
+      text1="Back to  "
+      text2="Sign in"
+      onPress={onSignUpIntoAccount}
+      />
+
     </View>
   );
-};
+
+}
 
 const styles = StyleSheet.create({
-  root: {
+  root: { 
     flex: 1,
-    alignItems: 'center', 
-    padding: 20,
+    alignItems: 'center',
+    padding: 2, 
     backgroundColor: '#222D31',
   },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    opacity: 0.3,
+    width: 470, 
+    height: 470,
+  },
+  placeholder: {
+  alignItems: 'center', 
+  padding: 2, 
+  backgroundColor: '#222D31',
+  marginTop: 0,
+  color: 'white',
+  borderBottomColor: 'white',
+  borderWidth: 1,
+  borderBottomWidth: 1,
+  borderRightWidth:0,
+  borderLeftWidth:0,
+  borderTopWidth:0,
+  placeholdertextcolor: 'white',
+  width: 380,
+  height: 60,
+  opacity: 1,
+},
+
 });
 
 export default SignUpScreen;
