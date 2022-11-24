@@ -18,8 +18,8 @@ exports.addBook = async (req, res) => {
     console.log("book added");
     res.status(201).send(`added book`);
   } catch (error) {
-    res.status(400).send("Can't add book");
     console.log(error);
+    res.status(400).send("Can't add book");
   }
 };
 
@@ -35,8 +35,8 @@ exports.getBooks = async (req, res) => {
     });
     res.status(200).send(books);
   } catch (error) {
-    res.status(400).send("Can't view books");
     console.log(error);
+    res.status(400).send("Can't view books");
   }
 };
 

@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const authRoutes = require("./routes/auth.js");
 const booksRoutes = require("./routes/books.js");
-const profileRoutes = require("./routes/profile.js");
 const cors = require("cors");
 
 app.use(cors({ origin: true, credentials: true }));
@@ -10,7 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", authRoutes);
 app.use("/", booksRoutes);
-app.use("/", profileRoutes);
 
 const PORT = process.env.PORT || 8080;
 
