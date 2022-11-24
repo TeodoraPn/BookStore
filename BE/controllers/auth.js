@@ -8,6 +8,7 @@ const {
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { db, firebaseApp } = require("../database.js");
+const { SECRETKEY } = require("../config/index.js");
 
 exports.signup = async (req, res) => {
   try {
@@ -20,14 +21,12 @@ exports.signup = async (req, res) => {
     usersDocs.forEach((user) => {
       allUsers.push(user.data());
     });
-    // TODO validate if the username already exists
     const usernameAlreadyExists = allUsers.filter((user) => {
       return user.username === body.username;
     });
     if (usernameAlreadyExists.length !== 0) {
       return res.status(400).send("username already exists");
     }
-    // TODO validate if the email already exists
     const emailAlreadyExists = allUsers.filter((user) => {
       return user.gmail === body.gmail;
     });
@@ -53,5 +52,54 @@ exports.signup = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(400).send("can't create account");
+  }
+};
+
+exports.signin = async (req, res) => {
+  const body = req.body;
+  // get all users from db
+  const usersCollection = collection(db, "users");
+  const queryUsers = query(usersCollection);
+  const usersDocs = await getDocs(queryUsers);
+  const allUsers = [];
+  usersDocs.forEach((user) => {
+    allUsers.push(user.data());
+  });
+  const user = allUsers.filter((user) => {
+    return user.gmail === body.gmail;
+  });
+  // email doesn't exist
+  if (user.length === 0) {
+    return res.status(400).send("email doesn't exists");
+  }
+
+  //TODO role not correct -> forbidden
+
+  const comparePassword = await bcrypt.compare(body.password, user[0].password);
+  if (comparePassword) {
+    const token = jwt.sign(
+      {
+        role: user.role,
+        username: user.username,
+        email: user.email,
+      },
+      SECRETKEY,
+      { expiresIn: "1 day" }
+    );
+
+    const result = {
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      token: `Bearer ${token}`,
+      expiresIn: 24,
+    };
+
+    return res.status(200).json({
+      ...result,
+      message: "you are successfully logged in",
+    });
+  } else {
+    return res.status(403).send("the password is incorrect");
   }
 };
