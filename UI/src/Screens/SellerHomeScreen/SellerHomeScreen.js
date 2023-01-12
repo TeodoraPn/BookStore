@@ -114,9 +114,9 @@ const SellerHomeScreen = () => {
 
   const navigation = useNavigation();
 
-  const onBackPressed = () => {
-    console.warn('Back');
-    navigation.navigate('SignInScreen');
+  const onLogOutPressed = () => {
+    console.warn('LogOut');
+    navigation.navigate('SignIn');
   };
 
   const onMyProfilePressed = () => {
@@ -139,6 +139,51 @@ const SellerHomeScreen = () => {
 
     <SafeAreaView style={styles.container}>
     
+    <TouchableOpacity>
+      <MaterialCommunityIcons
+              name="view-headline"
+              style={{
+                fontSize: 35,
+                color: '#B4C2C8',
+                marginHorizontal: 15,
+                backgroundColor: COLOURS.backgroundDark,
+              }}
+    /> 
+    </TouchableOpacity>
+
+    <TouchableOpacity>
+    <MaterialCommunityIcons
+              name="account-circle-outline"
+              style={{
+                fontSize: 35,
+                color: '#B4C2C8',
+                alignSelf: 'flex-end',
+                marginTop: -35,
+                marginEnd: 15,
+                backgroundColor: COLOURS.backgroundDark,
+              }}
+      />
+      </TouchableOpacity>
+
+      <TextInput
+        placeholder="        Search orders"
+        placeholderTextColor="#B4C2C8"
+        style={styles.placeholder}
+      /> 
+
+      <TouchableOpacity>
+      <MaterialCommunityIcons
+              name="magnify"
+              style={{
+                fontSize: 35,
+                color: '#B4C2C8',
+                alignSelf: 'flex-end',
+                marginTop: -47,
+                marginEnd: 365,
+                backgroundColor: '#303F45',
+              }}
+      />
+      </TouchableOpacity>
 
       <ImageBackground source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/books.png')} style={styles.image} resizeMode='repeat'>
       
@@ -151,6 +196,7 @@ const SellerHomeScreen = () => {
                 color: '#222D31',
                 padding: 0,
                 marginHorizontal: 3,
+                marginTop: 50,
               }}
         />
 
@@ -180,6 +226,7 @@ const SellerHomeScreen = () => {
           <TouchableOpacity>
             <MaterialCommunityIcons
               name="logout"
+              onPress={onLogOutPressed}
               style={{
                 fontSize: 20,
                 color: COLOURS.backgroundDark,
@@ -264,6 +311,21 @@ const styles = StyleSheet.create({
     marginHorizontal: -10,
     color: 'white',
     backgroundColor: '#021D59'
+  },
+  placeholder: {
+    alignItems: 'center', 
+    fontWeight: 'bold',
+    fontSize: 22,
+    padding: 20, 
+    backgroundColor: '#303F45',
+    marginTop: 15,
+    marginHorizontal: 15,
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: '#303F45',
+    width: 399,
+    height: 60,
+    color: '#B4C2C8',
   },
 });
 
