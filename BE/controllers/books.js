@@ -4,6 +4,9 @@ const {
   getDocs,
   query,
   where,
+  deleteDoc,
+  doc,
+  getDoc,
 } = require("firebase/firestore");
 const { db, firebaseApp } = require("../database.js");
 
@@ -16,10 +19,10 @@ exports.addBook = async (req, res) => {
       ...body,
     });
     console.log("book added");
-    res.status(201).send(`added book`);
+    return res.status(201).send(`added book`);
   } catch (error) {
     console.log(error);
-    res.status(400).send("Can't add book");
+    return res.status(400).send("Can't add book");
   }
 };
 
@@ -33,16 +36,28 @@ exports.getBooks = async (req, res) => {
     booksDocs.forEach((book) => {
       books.push(book.data());
     });
-    res.status(200).send(books);
+    return res.status(200).send(books);
   } catch (error) {
     console.log(error);
-    res.status(400).send("Can't view books");
+    return res.status(400).send("Can't view books");
   }
 };
 
 // delete book by title
-// exports.deleteBook = async (req, res) => {
-//   const { title } = req.params.title;
-//   const books = collection(db, "books").where("title", "==", title);
-//   console.log(books);
-// };
+exports.deleteBook = async (req, res) => {
+  try {
+    const title = req.params.title;
+    const books = await collection(db, "books");
+    const book = query(books, where("title", "==", title));
+    const bookDoc = await getDocs(book);
+    bookDoc.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
+    return res
+      .status(200)
+      .send(`book with title ${title} deleted successfully`);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send("Can't delete book");
+  }
+};
