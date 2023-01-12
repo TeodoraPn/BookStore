@@ -11,6 +11,7 @@ import SellerHomeScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/
 import PromoScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/PromoScreen/PromoScreen.js'
 import MyCartScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/MyCartScreen/MyCartScreen.js'
 import AddBookScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/AddBookScreen/AddBookScreen.js'
+import MyProfileScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/MyProfileScreen/MyProfileScreen.js'
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +27,8 @@ const Navigation = () => {
         <Stack.Screen name="PromoScreen" component={PromoScreen} />
         <Stack.Screen name="MyCartScreen" component={MyCartScreen} />
         <Stack.Screen name="AddBookScreen" component={AddBookScreen} />
-    </Stack.Navigator>
+        <Stack.Screen name="MyProfileScreen" component={MyProfileScreen} />
+     </Stack.Navigator>
     </NavigationContainer>
   );
 };
