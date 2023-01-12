@@ -61,17 +61,3 @@ exports.deleteBook = async (req, res) => {
     return res.status(400).send("Can't delete book");
   }
 };
-
-// update book by title
-// exports.updateBook = async (req, res) => {
-//   try {
-//     const body = req.body;
-//     const title = req.params.title;
-//     const books = await collection(db, "books");
-//     const book = query(books, where("title", "==", title));
-//     const bookDoc = await getDocs(book);
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(400).send("Can't update book");
-//   }
-// };

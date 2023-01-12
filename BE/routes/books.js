@@ -4,12 +4,12 @@ const {
   addBook,
   getBooks,
   deleteBook,
-  //   updateBook,
 } = require("../controllers/books.js");
 
 router.post("/books", addBook);
 router.get("/books", getBooks);
 router.delete("/books/:title", deleteBook);
-// router.patch("/books/:title", updateBook);
+
+// TODO: add a functionality for a cart: add books in cart 
 
 module.exports = router;
