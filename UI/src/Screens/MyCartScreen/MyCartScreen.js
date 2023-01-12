@@ -159,7 +159,8 @@ const MyCartScreen = () => {
 
       <SafeAreaView style={styles.containerr}>
        
-      <Image source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/Bag.jpeg')} style={styles.image}>
+      <Image source={require('../../../assets/images/Bag.jpeg')} style={styles.image}>
+
       </Image>
 
       </SafeAreaView>

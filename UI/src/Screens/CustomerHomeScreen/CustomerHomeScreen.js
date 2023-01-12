@@ -1,24 +1,33 @@
-import React, {useState, useEffect}  from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { TextInput, SafeAreaView, StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, ImageBackground } from 'react-native';
-import CustomButton1 from '../../components/CustomButton/CustomButton1.js';
-import {COLOURS, Items} from '../../components/database/Database.js';
+import React, { useState, useEffect } from "react";
+import { StatusBar } from "expo-status-bar";
+import {
+  TextInput,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from "react-native";
+import CustomButton1 from "../../components/CustomButton/CustomButton1.js";
+import { COLOURS, Items } from "../../components/database/Database.js";
 
-import Entypo from 'react-native-vector-icons/Entypo';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Entypo from "react-native-vector-icons/Entypo";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-import axios from 'axios';
-import {useNavigation} from '@react-navigation/native';
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const CustomerHomeScreen = () => {
-
   const [products, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
 
   //get called on screen loads
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+    const unsubscribe = navigation.addListener("focus", () => {
       getDataFromDB();
     });
 
@@ -31,9 +40,9 @@ const CustomerHomeScreen = () => {
     let productList = [];
     let wishlistList = [];
     for (let index = 0; index < Items.length; index++) {
-      if (Items[index].category == 'product') {
+      if (Items[index].category == "product") {
         productList.push(Items[index]);
-      } else if (Items[index].category == 'wishlist') {
+      } else if (Items[index].category == "wishlist") {
         wishlistList.push(Items[index]);
       }
     }
@@ -44,46 +53,52 @@ const CustomerHomeScreen = () => {
 
   //create an product reusable card
 
-  const ProductCard = ({data}) => {
+  const ProductCard = ({ data }) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('ProductInfo', {productID: data.id})}
+        onPress={() =>
+          navigation.navigate("ProductInfo", { productID: data.id })
+        }
         style={{
-          width: '48%',
+          width: "48%",
           marginVertical: 14,
-        }}>
+        }}
+      >
         <View
           style={{
-            width: '100%',
+            width: "100%",
             height: 100,
             borderRadius: 10,
             backgroundColor: COLOURS.backgroundLight,
-            position: 'relative',
-            justifyContent: 'center',
-            alignItems: 'center',
+            position: "relative",
+            justifyContent: "center",
+            alignItems: "center",
             marginBottom: 8,
-          }}>
+          }}
+        >
           {data.isOff ? (
             <View
               style={{
-                position: 'absolute',
-                width: '20%',
-                height: '24%',
+                position: "absolute",
+                width: "20%",
+                height: "24%",
                 backgroundColor: COLOURS.green,
                 top: 0,
                 left: 0,
                 borderTopLeftRadius: 10,
                 borderBottomRightRadius: 10,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <Text
                 style={{
                   fontSize: 12,
                   color: COLOURS.white,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                   letterSpacing: 1,
-                }}>
+                }}
+              >
                 {data.offPercentage}%
               </Text>
             </View>
@@ -91,9 +106,9 @@ const CustomerHomeScreen = () => {
           <Image
             source={data.productImage}
             style={{
-              width: '40%',
-              height: '100%',
-              resizeMode: 'stretch',
+              width: "40%",
+              height: "100%",
+              resizeMode: "stretch",
             }}
           />
         </View>
@@ -101,12 +116,13 @@ const CustomerHomeScreen = () => {
           style={{
             fontSize: 12,
             color: COLOURS.black,
-            fontWeight: '600',
+            fontWeight: "600",
             marginBottom: 2,
-          }}>
+          }}
+        >
           {data.productName}
         </Text>
-        
+
         <Text>&#8377; {data.productPrice}</Text>
       </TouchableOpacity>
     );
@@ -115,254 +131,256 @@ const CustomerHomeScreen = () => {
   const navigation = useNavigation();
 
   const onPromoPressed = () => {
-    console.warn('Promo');
-    navigation.navigate('PromoScreen');
+    console.warn("Promo");
+    navigation.navigate("PromoScreen");
   };
 
   const onMyCartPressed = () => {
-    console.warn('My Cart');
-    navigation.navigate('MyCartScreen');
+    console.warn("My Cart");
+    navigation.navigate("MyCartScreen");
   };
 
   const onBackPressed = () => {
-    console.warn('Back');
-    navigation.navigate('SignInScreen');
+    console.warn("Back");
+    navigation.navigate("SignInScreen");
   };
 
   const onMyProfilePressed = () => {
-    console.warn('My Profile');
-    navigation.navigate('MyProfileScreen');
+    console.warn("My Profile");
+    navigation.navigate("MyProfileScreen");
   };
 
   return (
     <View
       style={{
-        width: '100%',
-        height: '100%',
+        width: "100%",
+        height: "100%",
         backgroundColor: COLOURS.white,
-      }}>
-
-    <SafeAreaView style={styles.container}>
-    
-
-      <ImageBackground source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/books.png')} style={styles.image} resizeMode='repeat'>
-      
-        <CustomButton1 
-        text="Promo" 
-        onPress={onPromoPressed} 
-        />
-  
-        <Text style={styles.text1}>Buy One</Text>
-        <Text style={styles.text2}>Get One FREE</Text>
-  
-      </ImageBackground>
-      
+      }}
+    >
       <SafeAreaView style={styles.container}>
-        
-      </SafeAreaView>
-      <SafeAreaView style={styles.container2}>
-        
+        <ImageBackground
+          source={require("../../../assets/images/books.png")}
+          style={styles.image}
+          resizeMode="repeat"
+        >
+          <CustomButton1 text="Promo" onPress={onPromoPressed} />
 
-      <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View
-          style={{
-            width: '100%',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 16,
-          }}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name="logout"
-              style={{
-                fontSize: 20,
-                color: COLOURS.backgroundDark,
-                padding: 0,
-                borderRadius: 10,
-                backgroundColor: COLOURS.backgroundLight,
-              }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('MyCart')}>
-            <MaterialCommunityIcons
-              name="cart-variant"
-              onPress={onMyCartPressed}
-              style={{
-                fontSize: 22,
-                color: COLOURS.backgroundDark,
-                padding: 0,
-                borderRadius: 10,
-                borderWidth: 1,
-                borderColor: COLOURS.backgroundLight,
-              }}
-            />
-          </TouchableOpacity>
-        </View>
-        
-        <View
-          style={{
-            padding: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
+          <Text style={styles.text1}>Buy One</Text>
+          <Text style={styles.text2}>Get One FREE</Text>
+        </ImageBackground>
+
+        <SafeAreaView style={styles.container}></SafeAreaView>
+        <SafeAreaView style={styles.container2}>
+          <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
+          <ScrollView showsVerticalScrollIndicator={false}>
             <View
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  color: COLOURS.black,
-                  fontWeight: '500',
-                  letterSpacing: 1,
-                }}>
-                Books
-              </Text>
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: COLOURS.black,
-                  fontWeight: '400',
-                  opacity: 0.5,
-                  marginLeft: 10,
-                }}>
-                41
-              </Text>
+                width: "100%",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                padding: 16,
+              }}
+            >
+              <TouchableOpacity>
+                <MaterialCommunityIcons
+                  name="logout"
+                  style={{
+                    fontSize: 20,
+                    color: COLOURS.backgroundDark,
+                    padding: 0,
+                    borderRadius: 10,
+                    backgroundColor: COLOURS.backgroundLight,
+                  }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("MyCart")}>
+                <MaterialCommunityIcons
+                  name="cart-variant"
+                  onPress={onMyCartPressed}
+                  style={{
+                    fontSize: 22,
+                    color: COLOURS.backgroundDark,
+                    padding: 0,
+                    borderRadius: 10,
+                    borderWidth: 1,
+                    borderColor: COLOURS.backgroundLight,
+                  }}
+                />
+              </TouchableOpacity>
             </View>
-            <Text
-              style={{
-                fontSize: 14,
-                color: COLOURS.blue,
-                fontWeight: '400',
-              }}>
-              See All
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              justifyContent: 'space-around',
-            }}>
-            {products.map(data => {
-              return <ProductCard data={data} key={data.id} />;
-            })}
-          </View>
-        </View>
 
-        <View
-          style={{
-            padding: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
             <View
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Text
+                padding: 10,
+              }}
+            >
+              <View
                 style={{
-                  fontSize: 18,
-                  color: COLOURS.black,
-                  fontWeight: '500',
-                  letterSpacing: 1,
-                }}>
-                WishList
-              </Text>
-              <Text
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      color: COLOURS.black,
+                      fontWeight: "500",
+                      letterSpacing: 1,
+                    }}
+                  >
+                    Books
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      color: COLOURS.black,
+                      fontWeight: "400",
+                      opacity: 0.5,
+                      marginLeft: 10,
+                    }}
+                  >
+                    41
+                  </Text>
+                </View>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    color: COLOURS.blue,
+                    fontWeight: "400",
+                  }}
+                >
+                  See All
+                </Text>
+              </View>
+              <View
                 style={{
-                  fontSize: 14,
-                  color: COLOURS.black,
-                  fontWeight: '400',
-                  opacity: 0.5,
-                  marginLeft: 10,
-                }}>
-                18
-              </Text>
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  justifyContent: "space-around",
+                }}
+              >
+                {products.map((data) => {
+                  return <ProductCard data={data} key={data.id} />;
+                })}
+              </View>
             </View>
-            <Text
+
+            <View
               style={{
-                fontSize: 14,
-                color: COLOURS.blue,
-                fontWeight: '400',
-              }}>
-              See All
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              justifyContent: 'space-around',
-            }}>
-            {wishlist.map(data => {
-              return <ProductCard data={data} key={data.id} />;
-            })}
-          </View>
-        </View>
-      </ScrollView>
-    
+                padding: 10,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      color: COLOURS.black,
+                      fontWeight: "500",
+                      letterSpacing: 1,
+                    }}
+                  >
+                    WishList
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      color: COLOURS.black,
+                      fontWeight: "400",
+                      opacity: 0.5,
+                      marginLeft: 10,
+                    }}
+                  >
+                    18
+                  </Text>
+                </View>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    color: COLOURS.blue,
+                    fontWeight: "400",
+                  }}
+                >
+                  See All
+                </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  justifyContent: "space-around",
+                }}
+              >
+                {wishlist.map((data) => {
+                  return <ProductCard data={data} key={data.id} />;
+                })}
+              </View>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
       </SafeAreaView>
-     
-      </SafeAreaView>
-    
-    </View> 
+    </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222D31',
+    backgroundColor: "#222D31",
   },
   container2: {
     flex: 11,
-    backgroundColor: '#CBB199',
+    backgroundColor: "#CBB199",
   },
   image: {
     flex: 2,
     padding: 30,
     justifyContent: "center",
-    alignSelf: 'center',
-    width: 400, 
+    alignSelf: "center",
+    width: 400,
     height: 400,
-    borderRadius: 30, 
-    overflow: 'hidden',
+    borderRadius: 30,
+    overflow: "hidden",
     marginTop: 20,
   },
   text1: {
-    textAlign: 'right',
-    alignSelf: 'flex-end',
-    fontWeight: 'bold',
+    textAlign: "right",
+    alignSelf: "flex-end",
+    fontWeight: "bold",
     fontSize: 34,
-    color: 'white',
+    color: "white",
     marginTop: -35,
     marginHorizontal: -10,
-    backgroundColor: '#021D59',
+    backgroundColor: "#021D59",
   },
   text2: {
-    textAlign: 'right',
-    alignSelf: 'flex-end',
-    fontWeight: 'bold',
+    textAlign: "right",
+    alignSelf: "flex-end",
+    fontWeight: "bold",
     fontSize: 34,
     marginHorizontal: -10,
-    color: 'white',
-    backgroundColor: '#021D59'
+    color: "white",
+    backgroundColor: "#021D59",
   },
 });
-
-
 
 export default CustomerHomeScreen;

@@ -1,24 +1,33 @@
-import React, {useState, useEffect}  from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { TextInput, SafeAreaView, StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, ImageBackground } from 'react-native';
-import CustomButton6 from '../../components/CustomButton/CustomButton6.js';
-import {COLOURS, Items} from '../../components/database/Database.js';
+import React, { useState, useEffect } from "react";
+import { StatusBar } from "expo-status-bar";
+import {
+  TextInput,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from "react-native";
+import CustomButton6 from "../../components/CustomButton/CustomButton6.js";
+import { COLOURS, Items } from "../../components/database/Database.js";
 
-import Entypo from 'react-native-vector-icons/Entypo';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Entypo from "react-native-vector-icons/Entypo";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-import axios from 'axios';
-import {useNavigation} from '@react-navigation/native';
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const SellerHomeScreen = () => {
-
   const [products, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
 
   //get called on screen loads
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+    const unsubscribe = navigation.addListener("focus", () => {
       getDataFromDB();
     });
 
@@ -31,9 +40,9 @@ const SellerHomeScreen = () => {
     let productList = [];
     let wishlistList = [];
     for (let index = 0; index < Items.length; index++) {
-      if (Items[index].category == 'product') {
+      if (Items[index].category == "product") {
         productList.push(Items[index]);
-      } else if (Items[index].category == 'wishlist') {
+      } else if (Items[index].category == "wishlist") {
         wishlistList.push(Items[index]);
       }
     }
@@ -44,46 +53,52 @@ const SellerHomeScreen = () => {
 
   //create an product reusable card
 
-  const ProductCard = ({data}) => {
+  const ProductCard = ({ data }) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('ProductInfo', {productID: data.id})}
+        onPress={() =>
+          navigation.navigate("ProductInfo", { productID: data.id })
+        }
         style={{
-          width: '48%',
+          width: "48%",
           marginVertical: 14,
-        }}>
+        }}
+      >
         <View
           style={{
-            width: '100%',
+            width: "100%",
             height: 100,
             borderRadius: 10,
             backgroundColor: COLOURS.backgroundLight,
-            position: 'relative',
-            justifyContent: 'center',
-            alignItems: 'center',
+            position: "relative",
+            justifyContent: "center",
+            alignItems: "center",
             marginBottom: 8,
-          }}>
+          }}
+        >
           {data.isOff ? (
             <View
               style={{
-                position: 'absolute',
-                width: '20%',
-                height: '24%',
+                position: "absolute",
+                width: "20%",
+                height: "24%",
                 backgroundColor: COLOURS.green,
                 top: 0,
                 left: 0,
                 borderTopLeftRadius: 10,
                 borderBottomRightRadius: 10,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <Text
                 style={{
                   fontSize: 12,
                   color: COLOURS.white,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                   letterSpacing: 1,
-                }}>
+                }}
+              >
                 {data.offPercentage}%
               </Text>
             </View>
@@ -91,9 +106,9 @@ const SellerHomeScreen = () => {
           <Image
             source={data.productImage}
             style={{
-              width: '40%',
-              height: '100%',
-              resizeMode: 'stretch',
+              width: "40%",
+              height: "100%",
+              resizeMode: "stretch",
             }}
           />
         </View>
@@ -101,12 +116,13 @@ const SellerHomeScreen = () => {
           style={{
             fontSize: 12,
             color: COLOURS.black,
-            fontWeight: '600',
+            fontWeight: "600",
             marginBottom: 2,
-          }}>
+          }}
+        >
           {data.productName}
         </Text>
-        
+
         <Text>&#8377; {data.productPrice}</Text>
       </TouchableOpacity>
     );
@@ -115,158 +131,144 @@ const SellerHomeScreen = () => {
   const navigation = useNavigation();
 
   const onBackPressed = () => {
-    console.warn('Back');
-    navigation.navigate('SignInScreen');
+    console.warn("Back");
+    navigation.navigate("SignInScreen");
   };
 
   const onMyProfilePressed = () => {
-    console.warn('My Profile');
-    navigation.navigate('MyProfileScreen');
+    console.warn("My Profile");
+    navigation.navigate("MyProfileScreen");
   };
 
   const onAddBookPressed = () => {
-    console.warn('Add Book');
-    navigation.navigate('AddBookScreen');
+    console.warn("Add Book");
+    navigation.navigate("AddBookScreen");
   };
 
   return (
     <View
       style={{
-        width: '100%',
-        height: '100%',
+        width: "100%",
+        height: "100%",
         backgroundColor: COLOURS.white,
-      }}>
-
-    <SafeAreaView style={styles.container}>
-    
-
-      <ImageBackground source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/books.png')} style={styles.image} resizeMode='repeat'>
-      
-      <View style={styles.header}>
-        <MaterialCommunityIcons
+      }}
+    >
+      <SafeAreaView style={styles.container}>
+        <ImageBackground
+          source={require("../../../assets/images/books.png")}
+          style={styles.image}
+          resizeMode="repeat"
+        >
+          <View style={styles.header}>
+            <MaterialCommunityIcons
               name="plus-circle-outline"
               style={{
                 fontSize: 40,
-                alignSelf: 'flex-end',
-                color: '#222D31',
+                alignSelf: "flex-end",
+                color: "#222D31",
                 padding: 0,
                 marginHorizontal: 3,
               }}
-        />
+            />
 
-        <CustomButton6 
-        text="Add Book" 
-        onPress={onAddBookPressed}
-        />
-      </View>
+            <CustomButton6 text="Add Book" onPress={onAddBookPressed} />
+          </View>
+        </ImageBackground>
 
-      </ImageBackground>
-      
-      <SafeAreaView style={styles.container}>
-        
-      </SafeAreaView>
-      <SafeAreaView style={styles.container2}>
-        
-
-      <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View
-          style={{
-            width: '100%',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 16,
-          }}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name="logout"
+        <SafeAreaView style={styles.container}></SafeAreaView>
+        <SafeAreaView style={styles.container2}>
+          <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View
               style={{
-                fontSize: 20,
-                color: COLOURS.backgroundDark,
-                padding: 0,
-                borderRadius: 10,
-                backgroundColor: COLOURS.backgroundLight,
+                width: "100%",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                padding: 16,
+              }}
+            >
+              <TouchableOpacity>
+                <MaterialCommunityIcons
+                  name="logout"
+                  style={{
+                    fontSize: 20,
+                    color: COLOURS.backgroundDark,
+                    padding: 0,
+                    borderRadius: 10,
+                    backgroundColor: COLOURS.backgroundLight,
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <Text style={styles.textorder}>Orders</Text>
+
+            <View
+              style={{
+                marginTop: 10,
+                borderBottomColor: "#222D31",
+                borderBottomWidth: 2,
               }}
             />
-          </TouchableOpacity>
-          
-        </View>
-        
-        <Text style={styles.textorder}>Orders</Text>
-      
-        <View
-        style={{
-        marginTop: 10,
-        borderBottomColor: '#222D31',
-        borderBottomWidth: 2,
-        }}
-        />
-
-      </ScrollView>
-    
+          </ScrollView>
+        </SafeAreaView>
       </SafeAreaView>
-     
-      </SafeAreaView>
-    
-    </View> 
+    </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222D31',
+    backgroundColor: "#222D31",
   },
   container2: {
     flex: 11,
-    backgroundColor: '#CBB199',
+    backgroundColor: "#CBB199",
   },
   image: {
     flex: 2,
     padding: 30,
     justifyContent: "center",
-    alignSelf: 'center',
-    width: 400, 
+    alignSelf: "center",
+    width: 400,
     height: 400,
-    borderRadius: 30, 
-    overflow: 'hidden',
+    borderRadius: 30,
+    overflow: "hidden",
     marginTop: 20,
   },
   header: {
-    flexDirection: 'row',
-    alignSelf: 'flex-end',
+    flexDirection: "row",
+    alignSelf: "flex-end",
   },
   text1: {
-    textAlign: 'right',
-    alignSelf: 'flex-end',
-    fontWeight: 'bold',
+    textAlign: "right",
+    alignSelf: "flex-end",
+    fontWeight: "bold",
     fontSize: 34,
-    color: 'white',
+    color: "white",
     marginTop: -35,
     marginHorizontal: -10,
-    backgroundColor: '#021D59',
+    backgroundColor: "#021D59",
   },
   textorder: {
-    textAlign: 'left',
-    alignSelf: 'left',
-    fontWeight: 'bold',
+    textAlign: "left",
+    alignSelf: "left",
+    fontWeight: "bold",
     fontSize: 25,
-    color: 'black',
+    color: "black",
     marginTop: 10,
     marginHorizontal: 10,
   },
   text2: {
-    textAlign: 'right',
-    alignSelf: 'flex-end',
-    fontWeight: 'bold',
+    textAlign: "right",
+    alignSelf: "flex-end",
+    fontWeight: "bold",
     fontSize: 34,
     marginHorizontal: -10,
-    color: 'white',
-    backgroundColor: '#021D59'
+    color: "white",
+    backgroundColor: "#021D59",
   },
 });
-
-
 
 export default SellerHomeScreen;
