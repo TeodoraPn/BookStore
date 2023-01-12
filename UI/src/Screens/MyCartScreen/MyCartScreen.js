@@ -1,7 +1,8 @@
 import React, {useState, useEffect}  from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { TextInput, SafeAreaView, StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, ImageBackground } from 'react-native';
-import CustomButton6 from '../../components/CustomButton/CustomButton6.js';
+import CustomButton5 from '../../components/CustomButton/CustomButton5.js';
+import CustomButton4 from '../../components/CustomButton/CustomButton4.js';
 import {COLOURS, Items} from '../../components/database/Database.js';
 
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -11,7 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
-const SellerHomeScreen = () => {
+const MyCartScreen = () => {
 
   const [products, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
@@ -114,19 +115,20 @@ const SellerHomeScreen = () => {
 
   const navigation = useNavigation();
 
+  const onPromoPressed = () => {
+    console.warn('Promo');
+    navigation.navigate('PromoScreen');
+  };
+
+
   const onBackPressed = () => {
     console.warn('Back');
-    navigation.navigate('SignInScreen');
+    navigation.navigate('CustomerHomeScreen');
   };
 
   const onMyProfilePressed = () => {
     console.warn('My Profile');
     navigation.navigate('MyProfileScreen');
-  };
-
-  const onAddBookPressed = () => {
-    console.warn('Add Book');
-    navigation.navigate('AddBookScreen');
   };
 
   return (
@@ -139,73 +141,105 @@ const SellerHomeScreen = () => {
 
     <SafeAreaView style={styles.container}>
     
-
-      <ImageBackground source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/books.png')} style={styles.image} resizeMode='repeat'>
-      
-      <View style={styles.header}>
+    <View style={styles.header}>
+    
         <MaterialCommunityIcons
-              name="plus-circle-outline"
+              name="chevron-left"
+              onPress={onBackPressed}
               style={{
                 fontSize: 40,
-                alignSelf: 'flex-end',
-                color: '#222D31',
-                padding: 0,
-                marginHorizontal: 3,
-              }}
-        />
-
-        <CustomButton6 
-        text="Add Book" 
-        onPress={onAddBookPressed}
-        />
-      </View>
-
-      </ImageBackground>
-      
-      <SafeAreaView style={styles.container}>
-        
-      </SafeAreaView>
-      <SafeAreaView style={styles.container2}>
-        
-
-      <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View
-          style={{
-            width: '100%',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 16,
-          }}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name="logout"
-              style={{
-                fontSize: 20,
-                color: COLOURS.backgroundDark,
-                padding: 0,
+                color: '#D5E3E8',
+                padding: 8,
                 borderRadius: 10,
-                backgroundColor: COLOURS.backgroundLight,
               }}
             />
-          </TouchableOpacity>
-          
-        </View>
+
+        <Text style={styles.textpromo}>Order</Text>
+    </View>
+
+      <SafeAreaView style={styles.containerr}>
+       
+      <Image source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/Bag.jpeg')} style={styles.image}>
+      </Image>
+
+      </SafeAreaView>
+
+
+      <SafeAreaView style={styles.container2}>
         
-        <Text style={styles.textorder}>Orders</Text>
-      
-        <View
+      <Text style={styles.text1}>Delivery Adress:</Text>
+      <Text style={styles.text}>Giroc, Strada Sperantei, nr. 18</Text>
+
+      <View style={styles.header}>
+    
+      <CustomButton5
+        text="Edit Adress" 
+        onPress={onBackPressed} 
+        />
+
+      <CustomButton5
+        text="Add Note" 
+        onPress={onBackPressed} 
+        />
+
+      </View>
+
+      <View
         style={{
         marginTop: 10,
         borderBottomColor: '#222D31',
-        borderBottomWidth: 2,
+        borderBottomWidth: 1.3,
         }}
+      />
+
+      <View 
+            style={{
+              marginTop: 0,
+              marginHorizontal: 10,
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              justifyContent: 'space-around',
+            }}>
+            {wishlist.map(data => {
+              return <ProductCard data={data} key={data.id} />;
+            })}
+      </View>
+
+      <View
+        style={{
+        marginTop: 10,
+        borderBottomColor: '#222D31',
+        borderBottomWidth: 1,
+        }}
+      />
+
+      <Text style={styles.text1}>Payment Summary                                           10$</Text>
+      <Text style={styles.text}>Price</Text>
+      <Text style={styles.text}>Delivery Fee</Text>
+
+      <View
+        style={{
+        marginTop: 10,
+        borderBottomColor: '#222D31',
+        borderBottomWidth: 1,
+        }}
+      />
+
+      <Text style={styles.text1}>Total Payment</Text>
+      
+      <CustomButton4
+        text="Place Order" 
+        onPress={onBackPressed} 
         />
 
+      <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        
+        
       </ScrollView>
     
       </SafeAreaView>
-     
+      
       </SafeAreaView>
     
     </View> 
@@ -218,42 +252,43 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#222D31',
   },
+  containerr: {
+    flex: 1,
+    backgroundColor: '#CBB199',
+  },
   container2: {
     flex: 11,
     backgroundColor: '#CBB199',
   },
   image: {
     flex: 2,
-    padding: 30,
+    padding: 28,
     justifyContent: "center",
     alignSelf: 'center',
-    width: 400, 
-    height: 400,
-    borderRadius: 30, 
+    width: 270, 
+    height: 220,
+    borderRadius: 16, 
     overflow: 'hidden',
-    marginTop: 20,
-  },
-  header: {
-    flexDirection: 'row',
-    alignSelf: 'flex-end',
+    marginTop: 7,
   },
   text1: {
-    textAlign: 'right',
-    alignSelf: 'flex-end',
-    fontWeight: 'bold',
-    fontSize: 34,
-    color: 'white',
-    marginTop: -35,
-    marginHorizontal: -10,
-    backgroundColor: '#021D59',
-  },
-  textorder: {
     textAlign: 'left',
     alignSelf: 'left',
     fontWeight: 'bold',
-    fontSize: 25,
+    fontSize: 20,
     color: 'black',
     marginTop: 10,
+    marginHorizontal: 10,
+  },
+  header: {
+    flexDirection: 'row',
+  },
+  text: {
+    textAlign: 'left',
+    alignSelf: 'left',
+    fontSize: 20,
+    color: 'black',
+    marginTop: 0,
     marginHorizontal: 10,
   },
   text2: {
@@ -265,8 +300,18 @@ const styles = StyleSheet.create({
     color: 'white',
     backgroundColor: '#021D59'
   },
+  textpromo: {
+    textAlign: 'center',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    fontSize: 24,
+    color: '#D5E3E8',
+    marginHorizontal: 112,
+    backgroundColor: '#222D31',
+    padding: 15,
+  },
 });
 
 
 
-export default SellerHomeScreen;
+export default MyCartScreen;

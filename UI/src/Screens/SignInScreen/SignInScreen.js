@@ -6,6 +6,8 @@ import CustomButton2 from '../../components/CustomButton/CustomButton2.js';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
+import SelectDropdown from 'react-native-select-dropdown'
+
 const url = 'http://localhost:8080';
 
 const SignInScreen = () => {
@@ -29,13 +31,39 @@ const SignInScreen = () => {
     navigation.navigate('SignUp');
   };
 
+  const roles = ["Customer", "Seller"]
+
   return (
     <View style={styles.root}>
     
-    <Text>Back</Text>
-    
+
     <Image source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/Cover.jpg')} style={styles.image}></Image>
     
+
+    <SelectDropdown
+    buttonStyle={styles.dropdown}
+    buttonTextStyle={styles.text}
+    defaultButtonText='Select Role'
+    
+    data={roles}
+    itemTextStyle={{backgroundColor:'#222D31',textColor:"white"}}
+    
+    onSelect={(selectedItem, index) => {
+		console.log(selectedItem, index)
+	  }}
+	  buttonTextAfterSelection={(selectedItem, index) => {
+		// text represented after item is selected
+		// if data array is an array of objects then return selectedItem.property to render after item is selected
+		return selectedItem
+	  }}
+	  rowTextForSelection={(item, index) => {
+		// text represented for each item in dropdown
+		// if data array is an array of objects then return item.property to represent item in dropdown
+		return item
+	  }}
+    
+    />
+
       <TextInput
         placeholder="Gmail or Username"
         style={styles.placeholder}
@@ -74,6 +102,31 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     padding: 2, 
     backgroundColor: '#222D31',
+  },
+  dropdown: { 
+    backgroundColor: '#222D31',
+    height: 50,
+    borderColor: '#222D31',
+    borderBottomColor: 'white',
+    borderWidth: 1,
+    paddingHorizontal: 8,
+    marginBottom: 10,
+    width: 380,
+    height: 60,
+  },
+  text: {
+    color: 'white',
+    fontSize: 14,
+    alignContent: 'flex-end',
+    paddingRight: 270, 
+  },
+  placeholderStyle: {
+    backgroundColor: '#222D31',
+    searchPlaceHolderColor: '#222D31',
+    dropdownOverlayColor: '#222D31',
+    dropdownBackgroundColor: '#222D31',
+    dropdownIconPosition: 'left',
+    fontSize: 6,
   },
   image: {
     flex: 1,

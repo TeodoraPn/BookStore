@@ -1,7 +1,7 @@
 import React, {useState, useEffect}  from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { TextInput, SafeAreaView, StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, ImageBackground } from 'react-native';
-import CustomButton6 from '../../components/CustomButton/CustomButton6.js';
+import CustomButton3 from '../../components/CustomButton/CustomButton3.js';
 import {COLOURS, Items} from '../../components/database/Database.js';
 
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -11,7 +11,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
-const SellerHomeScreen = () => {
+
+const CustomerHomeScreen = () => {
 
   const [products, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
@@ -116,18 +117,9 @@ const SellerHomeScreen = () => {
 
   const onBackPressed = () => {
     console.warn('Back');
-    navigation.navigate('SignInScreen');
+    navigation.navigate('CustomerHomeScreen');
   };
 
-  const onMyProfilePressed = () => {
-    console.warn('My Profile');
-    navigation.navigate('MyProfileScreen');
-  };
-
-  const onAddBookPressed = () => {
-    console.warn('Add Book');
-    navigation.navigate('AddBookScreen');
-  };
 
   return (
     <View
@@ -138,74 +130,54 @@ const SellerHomeScreen = () => {
       }}>
 
     <SafeAreaView style={styles.container}>
-    
 
-      <ImageBackground source={require('/Users/teodorapinzariu/BookStore/Bookstore/UI/assets/images/books.png')} style={styles.image} resizeMode='repeat'>
-      
-      <View style={styles.header}>
-        <MaterialCommunityIcons
-              name="plus-circle-outline"
+    <View style={styles.header}>
+    <MaterialCommunityIcons
+              name="chevron-left"
+              onPress={onBackPressed}
               style={{
                 fontSize: 40,
-                alignSelf: 'flex-end',
-                color: '#222D31',
-                padding: 0,
-                marginHorizontal: 3,
+                color: '#D5E3E8',
+                padding: 8,
+                borderRadius: 10,
               }}
-        />
+            />
 
-        <CustomButton6 
-        text="Add Book" 
-        onPress={onAddBookPressed}
-        />
+      <Text style={styles.textpromo}>Promotions of the week</Text>
       </View>
 
-      </ImageBackground>
-      
-      <SafeAreaView style={styles.container}>
-        
-      </SafeAreaView>
       <SafeAreaView style={styles.container2}>
         
 
       <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
       <ScrollView showsVerticalScrollIndicator={false}>
+        
         <View
           style={{
-            width: '100%',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 16,
+            padding: 10,
           }}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name="logout"
-              style={{
-                fontSize: 20,
-                color: COLOURS.backgroundDark,
-                padding: 0,
-                borderRadius: 10,
-                backgroundColor: COLOURS.backgroundLight,
-              }}
-            />
-          </TouchableOpacity>
           
-        </View>
-        
-        <Text style={styles.textorder}>Orders</Text>
-      
-        <View
-        style={{
-        marginTop: 10,
-        borderBottomColor: '#222D31',
-        borderBottomWidth: 2,
-        }}
-        />
 
+          <View
+            style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              justifyContent: 'space-around',
+            }}>
+            {products.map(data => {
+              return <ProductCard data={data} key={data.id} />;
+            })}
+          </View>
+
+
+        </View>
+
+        
       </ScrollView>
     
       </SafeAreaView>
-     
+   
+
       </SafeAreaView>
     
     </View> 
@@ -217,6 +189,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#222D31',
+  },
+  header: {
+    flexDirection: 'row',
   },
   container2: {
     flex: 11,
@@ -233,40 +208,18 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: 20,
   },
-  header: {
-    flexDirection: 'row',
-    alignSelf: 'flex-end',
-  },
-  text1: {
-    textAlign: 'right',
-    alignSelf: 'flex-end',
+  textpromo: {
+    textAlign: 'center',
+    alignSelf: 'center',
     fontWeight: 'bold',
-    fontSize: 34,
-    color: 'white',
-    marginTop: -35,
-    marginHorizontal: -10,
-    backgroundColor: '#021D59',
-  },
-  textorder: {
-    textAlign: 'left',
-    alignSelf: 'left',
-    fontWeight: 'bold',
-    fontSize: 25,
-    color: 'black',
-    marginTop: 10,
-    marginHorizontal: 10,
-  },
-  text2: {
-    textAlign: 'right',
-    alignSelf: 'flex-end',
-    fontWeight: 'bold',
-    fontSize: 34,
-    marginHorizontal: -10,
-    color: 'white',
-    backgroundColor: '#021D59'
+    fontSize: 24,
+    color: '#D5E3E8',
+    marginHorizontal: 30,
+    padding: 0,
+    backgroundColor: '#222D31',
   },
 });
 
 
 
-export default SellerHomeScreen;
+export default CustomerHomeScreen;

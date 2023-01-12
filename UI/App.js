@@ -5,6 +5,7 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import SignInScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/SignInScreen/SignInScreen.js';
 import SignUpScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/SignUpScreen/SignUpScreen.js';
 import CustomerHomeScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/CustomerHomeScreen/CustomerHomeScreen.js';
+import PromoScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/PromoScreen/PromoScreen.js'
 import Navigation from './src/navigation';
 
 
