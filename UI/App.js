@@ -1,13 +1,13 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
-import SignInScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/SignInScreen/SignInScreen.js';
-import SignUpScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/SignUpScreen/SignUpScreen.js';
-import CustomerHomeScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/CustomerHomeScreen/CustomerHomeScreen.js';
-import PromoScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/PromoScreen/PromoScreen.js'
-import Navigation from './src/navigation';
+import SignInScreen from "./src/Screens/SignInScreen/SignInScreen";
+import SignUpScreen from "./src/Screens/SignUpScreen/SignUpScreen";
+import CustomerHomeScreen from "./src/Screens/CustomerHomeScreen/CustomerHomeScreen";
+import PromoScreen from "./src/Screens/PromoScreen/PromoScreen";
 
+import Navigation from "./src/navigation";
 
 const App = () => {
   return (
@@ -20,10 +20,8 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222D31',
+    backgroundColor: "#222D31",
   },
 });
-
-
 
 export default App;
