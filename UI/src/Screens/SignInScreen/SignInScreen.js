@@ -20,16 +20,36 @@ const url = "http://localhost:8080";
 const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
 
   const navigation = useNavigation();
 
   const onSignInPressed = () => {
-    console.warn("Sign in");
-    navigation.navigate("CustomerHomeScreen");
-    axios
-      .post(`http://10.0.2.2:8080/signin`, { email, password })
-      .then((res) => console.log(JSON.stringify(res.data)))
-      .catch((err) => console.log("err: " + err));
+    // console.warn("Sign in");
+    // axios
+    //   .post(`http://localhost:8080/signin`, { email, password })
+    //   .then((res) => {
+    //     console.log(JSON.stringify(res.data));
+    //   })
+    //   .catch((err) => {
+    //     console.log(JSON.stringify(err));
+    //   });
+    fetch("http://localhost:8080/signin", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    if (role === "Customer") {
+      navigation.navigate("CustomerHomeScreen");
+    } else navigation.navigate("SellerHomeScreen");
   };
 
   const onCreateAccount = () => {
@@ -53,6 +73,7 @@ const SignInScreen = () => {
         data={roles}
         itemTextStyle={{ backgroundColor: "#222D31", textColor: "white" }}
         onSelect={(selectedItem, index) => {
+          setRole(selectedItem);
           console.log(selectedItem, index);
         }}
         buttonTextAfterSelection={(selectedItem, index) => {

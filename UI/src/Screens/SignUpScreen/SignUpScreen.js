@@ -23,10 +23,13 @@ const SignUpScreen = () => {
 
   const onSignUpPressed = () => {
     console.warn("Sign up");
-    navigation.navigate("SellerHomeScreen");
+    navigation.navigate("SignIn");
     axios
       .post(`http://10.0.2.2:8080/signup`, { email, password })
-      .then((res) => console.log(JSON.stringify(res.data)))
+      .then((res) => {
+        // if()
+        console.log(JSON.stringify(res.data));
+      })
       .catch((err) => console.log("err: " + err));
   };
 
