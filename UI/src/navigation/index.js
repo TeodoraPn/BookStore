@@ -8,6 +8,9 @@ import SignInScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Scre
 import SignUpScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/SignUpScreen/SignUpScreen.js';
 import CustomerHomeScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/CustomerHomeScreen/CustomerHomeScreen.js';
 import SellerHomeScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/SellerHomeScreen/SellerHomeScreen.js';
+import PromoScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/PromoScreen/PromoScreen.js'
+import MyCartScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/MyCartScreen/MyCartScreen.js'
+import AddBookScreen from '/Users/teodorapinzariu/BookStore/Bookstore/UI/src/Screens/AddBookScreen/AddBookScreen.js'
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +23,10 @@ const Navigation = () => {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="CustomerHomeScreen" component={CustomerHomeScreen} />
         <Stack.Screen name="SellerHomeScreen" component={SellerHomeScreen} />
-     </Stack.Navigator>
+        <Stack.Screen name="PromoScreen" component={PromoScreen} />
+        <Stack.Screen name="MyCartScreen" component={MyCartScreen} />
+        <Stack.Screen name="AddBookScreen" component={AddBookScreen} />
+    </Stack.Navigator>
     </NavigationContainer>
   );
 };
