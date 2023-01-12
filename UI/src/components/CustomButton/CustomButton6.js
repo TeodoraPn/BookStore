@@ -14,11 +14,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#303F45',
     width: '45%',
     padding: 15,
-    marginVertical: -10,
-    marginTop: 0,
     alignItems: 'center',
     alignSelf: 'flex-end',
     borderRadius: 8,
+    marginVertical: -10,
+    marginHorizontal: 2,
   },
   text: {
     fontWeight: 'bold',

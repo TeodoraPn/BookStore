@@ -140,9 +140,9 @@ const CustomerHomeScreen = () => {
     navigation.navigate("MyCartScreen");
   };
 
-  const onBackPressed = () => {
-    console.warn("Back");
-    navigation.navigate("SignInScreen");
+  const onLogOutPressed = () => {
+    console.warn("LogOut");
+    navigation.navigate("SignIn");
   };
 
   const onMyProfilePressed = () => {
@@ -159,6 +159,53 @@ const CustomerHomeScreen = () => {
       }}
     >
       <SafeAreaView style={styles.container}>
+        <TouchableOpacity>
+          <MaterialCommunityIcons
+            name="view-headline"
+            style={{
+              fontSize: 35,
+              color: "#B4C2C8",
+              marginHorizontal: 15,
+              backgroundColor: COLOURS.backgroundDark,
+            }}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <MaterialCommunityIcons
+            name="account-circle-outline"
+            onPress={onMyProfilePressed}
+            style={{
+              fontSize: 35,
+              color: "#B4C2C8",
+              alignSelf: "flex-end",
+              marginTop: -35,
+              marginEnd: 15,
+              backgroundColor: COLOURS.backgroundDark,
+            }}
+          />
+        </TouchableOpacity>
+
+        <TextInput
+          placeholder="        Search books"
+          placeholderTextColor="#B4C2C8"
+          style={styles.placeholder}
+        />
+
+        <TouchableOpacity>
+          <MaterialCommunityIcons
+            name="magnify"
+            style={{
+              fontSize: 35,
+              color: "#B4C2C8",
+              alignSelf: "flex-end",
+              marginTop: -47,
+              marginEnd: 365,
+              backgroundColor: "#303F45",
+            }}
+          />
+        </TouchableOpacity>
+
         <ImageBackground
           source={require("../../../assets/images/books.png")}
           style={styles.image}
@@ -185,11 +232,10 @@ const CustomerHomeScreen = () => {
               <TouchableOpacity>
                 <MaterialCommunityIcons
                   name="logout"
+                  onPress={onLogOutPressed}
                   style={{
-                    fontSize: 20,
+                    fontSize: 30,
                     color: COLOURS.backgroundDark,
-                    padding: 0,
-                    borderRadius: 10,
                     backgroundColor: COLOURS.backgroundLight,
                   }}
                 />
@@ -199,11 +245,8 @@ const CustomerHomeScreen = () => {
                   name="cart-variant"
                   onPress={onMyCartPressed}
                   style={{
-                    fontSize: 22,
+                    fontSize: 30,
                     color: COLOURS.backgroundDark,
-                    padding: 0,
-                    borderRadius: 10,
-                    borderWidth: 1,
                     borderColor: COLOURS.backgroundLight,
                   }}
                 />
@@ -230,10 +273,9 @@ const CustomerHomeScreen = () => {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 22,
                       color: COLOURS.black,
-                      fontWeight: "500",
-                      letterSpacing: 1,
+                      fontWeight: "700",
                     }}
                   >
                     Books
@@ -242,7 +284,7 @@ const CustomerHomeScreen = () => {
                     style={{
                       fontSize: 14,
                       color: COLOURS.black,
-                      fontWeight: "400",
+                      fontWeight: "700",
                       opacity: 0.5,
                       marginLeft: 10,
                     }}
@@ -252,7 +294,7 @@ const CustomerHomeScreen = () => {
                 </View>
                 <Text
                   style={{
-                    fontSize: 14,
+                    fontSize: 20,
                     color: COLOURS.blue,
                     fontWeight: "400",
                   }}
@@ -293,10 +335,9 @@ const CustomerHomeScreen = () => {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 22,
                       color: COLOURS.black,
-                      fontWeight: "500",
-                      letterSpacing: 1,
+                      fontWeight: "700",
                     }}
                   >
                     WishList
@@ -305,7 +346,7 @@ const CustomerHomeScreen = () => {
                     style={{
                       fontSize: 14,
                       color: COLOURS.black,
-                      fontWeight: "400",
+                      fontWeight: "700",
                       opacity: 0.5,
                       marginLeft: 10,
                     }}
@@ -315,7 +356,7 @@ const CustomerHomeScreen = () => {
                 </View>
                 <Text
                   style={{
-                    fontSize: 14,
+                    fontSize: 20,
                     color: COLOURS.blue,
                     fontWeight: "400",
                   }}
@@ -327,7 +368,7 @@ const CustomerHomeScreen = () => {
                 style={{
                   flexDirection: "row",
                   flexWrap: "wrap",
-                  justifyContent: "space-around",
+                  justifyContent: "space-between",
                 }}
               >
                 {wishlist.map((data) => {
@@ -362,11 +403,14 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     marginTop: 20,
   },
+  header: {
+    flexDirection: "row",
+  },
   text1: {
     textAlign: "right",
     alignSelf: "flex-end",
     fontWeight: "bold",
-    fontSize: 34,
+    fontSize: 33,
     color: "white",
     marginTop: -35,
     marginHorizontal: -10,
@@ -376,10 +420,25 @@ const styles = StyleSheet.create({
     textAlign: "right",
     alignSelf: "flex-end",
     fontWeight: "bold",
-    fontSize: 34,
+    fontSize: 33,
     marginHorizontal: -10,
     color: "white",
     backgroundColor: "#021D59",
+  },
+  placeholder: {
+    alignItems: "center",
+    fontWeight: "bold",
+    fontSize: 22,
+    padding: 20,
+    backgroundColor: "#303F45",
+    marginTop: 15,
+    marginHorizontal: 15,
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: "#303F45",
+    width: 399,
+    height: 60,
+    color: "#B4C2C8",
   },
 });
 
