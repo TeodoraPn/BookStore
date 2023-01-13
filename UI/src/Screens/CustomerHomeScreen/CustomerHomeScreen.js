@@ -22,12 +22,14 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
 const CustomerHomeScreen = () => {
+  
   const [products, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
+  const [promo, setpromo] = useState([]);
 
   //get called on screen loads
   useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
+    const unsubscribe = navigation.addListener('focus', () => {
       getDataFromDB();
     });
 
@@ -39,16 +41,20 @@ const CustomerHomeScreen = () => {
   const getDataFromDB = () => {
     let productList = [];
     let wishlistList = [];
+    let promoList = [];
     for (let index = 0; index < Items.length; index++) {
-      if (Items[index].category == "product") {
+      if (Items[index].category == 'product') {
         productList.push(Items[index]);
-      } else if (Items[index].category == "wishlist") {
+      } else if (Items[index].category == 'wishlist') {
         wishlistList.push(Items[index]);
+      } else if (Items[index].category == 'promo') {
+        promoList.push(Items[index]);
       }
     }
 
     setProducts(productList);
     setWishlist(wishlistList);
+    setpromo(promoList);
   };
 
   //create an product reusable card
@@ -149,7 +155,11 @@ const CustomerHomeScreen = () => {
     console.warn("My Profile");
     navigation.navigate("MyProfileScreen");
   };
-
+  
+  const onSeeAllPressed = () => {
+    console.warn("See All");
+    navigation.navigate("PromoScreen");
+  };
   return (
     <View
       style={{
@@ -297,7 +307,8 @@ const CustomerHomeScreen = () => {
                     fontSize: 20,
                     color: COLOURS.blue,
                     fontWeight: "400",
-                  }}
+                  }} 
+                  onPress={onSeeAllPressed}
                 >
                   See All
                 </Text>
@@ -360,6 +371,7 @@ const CustomerHomeScreen = () => {
                     color: COLOURS.blue,
                     fontWeight: "400",
                   }}
+                  onPress={onSeeAllPressed}
                 >
                   See All
                 </Text>
@@ -375,8 +387,12 @@ const CustomerHomeScreen = () => {
                   return <ProductCard data={data} key={data.id} />;
                 })}
               </View>
+
+              
             </View>
+
           </ScrollView>
+
         </SafeAreaView>
       </SafeAreaView>
     </View>
