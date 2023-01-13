@@ -16,6 +16,7 @@ const CustomerHomeScreen = () => {
 
   const [products, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
+  const [promo, setpromo] = useState([]);
 
   //get called on screen loads
   useEffect(() => {
@@ -31,16 +32,20 @@ const CustomerHomeScreen = () => {
   const getDataFromDB = () => {
     let productList = [];
     let wishlistList = [];
+    let promoList = [];
     for (let index = 0; index < Items.length; index++) {
       if (Items[index].category == 'product') {
         productList.push(Items[index]);
       } else if (Items[index].category == 'wishlist') {
         wishlistList.push(Items[index]);
+      } else if (Items[index].category == 'promo') {
+        promoList.push(Items[index]);
       }
     }
 
     setProducts(productList);
     setWishlist(wishlistList);
+    setpromo(promoList);
   };
 
   //create an product reusable card
@@ -147,8 +152,11 @@ const CustomerHomeScreen = () => {
       </View>
 
       <SafeAreaView style={styles.container2}>
-        
-
+      <Text style={styles.text}></Text>
+      <Text style={styles.text}></Text>
+      <Text style={styles.text}></Text>
+      <Text style={styles.text}></Text>
+      
       <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
       <ScrollView showsVerticalScrollIndicator={false}>
         
@@ -172,7 +180,47 @@ const CustomerHomeScreen = () => {
 
         </View>
 
+        <View
+          style={{
+            padding: 10,
+          }}>
+          
+
+          <View
+            style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              justifyContent: 'space-around',
+            }}>
+            {wishlist.map(data => {
+              return <ProductCard data={data} key={data.id} />;
+            })}
+          </View>
+
+
+        </View>
         
+
+        <View
+          style={{
+            padding: 10,
+          }}>
+          
+
+          <View
+            style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              justifyContent: 'space-around',
+            }}>
+            {promo.map(data => {
+              return <ProductCard data={data} key={data.id} />;
+            })}
+          </View>
+
+
+        </View>
+
       </ScrollView>
     
       </SafeAreaView>

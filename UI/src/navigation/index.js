@@ -12,6 +12,7 @@ import PromoScreen from "../Screens/PromoScreen/PromoScreen.js";
 import MyCartScreen from "../Screens/MyCartScreen/MyCartScreen.js";
 import AddBookScreen from "../Screens/AddBookScreen/AddBookScreen.js";
 import MyProfileScreen from "../Screens/MyProfileScreen/MyProfileScreen.js";
+import MyProfileSScreen from "../Screens/MyProfileSScreen/MyProfileSScreen.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ const Navigation = () => {
         <Stack.Screen name="MyCartScreen" component={MyCartScreen} />
         <Stack.Screen name="AddBookScreen" component={AddBookScreen} />
         <Stack.Screen name="MyProfileScreen" component={MyProfileScreen} />
+        <Stack.Screen name="MyProfileSScreen" component={MyProfileSScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

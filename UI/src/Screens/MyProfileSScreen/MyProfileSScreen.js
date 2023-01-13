@@ -11,13 +11,13 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
-const MyProfileScreen = () => {
+const MyProfileSScreen = () => {
 
   const navigation = useNavigation();
 
   const onBackPressed = () => {
     console.warn('Back');
-    navigation.navigate('CustomerHomeScreen');
+    navigation.navigate('SellerHomeScreen');
   };
 
   return (
@@ -89,7 +89,7 @@ const MyProfileScreen = () => {
 
       <Text style={styles.textacc}>Birth Date: 15/03/2000</Text>
 
-      <Text style={styles.textacc}>Role: Customer</Text>
+      <Text style={styles.textacc}>Role: Seller</Text>
 
       <CustomButton7 text="Edit Profile"/>
           
@@ -183,4 +183,4 @@ const styles = StyleSheet.create({
 
 
 
-export default MyProfileScreen;
+export default MyProfileSScreen;

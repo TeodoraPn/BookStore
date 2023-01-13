@@ -12,18 +12,19 @@ const CustomButton = ({onPress, text}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#303F45',
-    width: '45%',
-    padding: 15,
+    width: '30%',
+    padding: 10,
     alignItems: 'center',
     alignSelf: 'flex-end',
-    borderRadius: 15,
+    borderRadius: 20,
     marginVertical: -10,
     marginHorizontal: 2,
+    marginBottom: 0,
   },
   text: {
     fontWeight: 'bold',
     color: '#D5E3E8',
-    fontSize: 25,
+    fontSize: 20,
     textAlign: 'center',
   },
 });

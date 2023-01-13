@@ -12,6 +12,7 @@ import {
   ImageBackground,
 } from "react-native";
 import CustomButton6 from "../../components/CustomButton/CustomButton6.js";
+import CustomButton7 from "../../components/CustomButton/CustomButton7.js";
 import { COLOURS, Items } from "../../components/database/Database.js";
 
 import Entypo from "react-native-vector-icons/Entypo";
@@ -135,9 +136,9 @@ const SellerHomeScreen = () => {
     navigation.navigate("SignIn");
   };
 
-  const onMyProfilePressed = () => {
+  const onMyProfileSScreenpressed = () => {
     console.warn("My Profile");
-    navigation.navigate("MyProfileScreen");
+    navigation.navigate("MyProfileSScreen");
   };
 
   const onAddBookPressed = () => {
@@ -169,6 +170,7 @@ const SellerHomeScreen = () => {
         <TouchableOpacity>
           <MaterialCommunityIcons
             name="account-circle-outline"
+            onPress={onMyProfileSScreenpressed}
             style={{
               fontSize: 35,
               color: "#B4C2C8",
@@ -206,6 +208,9 @@ const SellerHomeScreen = () => {
           resizeMode="repeat"
         >
           <View style={styles.header}>
+            
+            <TouchableOpacity>
+
             <MaterialCommunityIcons
               name="plus-circle-outline"
               style={{
@@ -217,8 +222,10 @@ const SellerHomeScreen = () => {
                 marginTop: 50,
               }}
             />
+            </TouchableOpacity>
 
             <CustomButton6 text="Add Book" onPress={onAddBookPressed} />
+          
           </View>
         </ImageBackground>
 
@@ -239,7 +246,7 @@ const SellerHomeScreen = () => {
                   name="logout"
                   onPress={onLogOutPressed}
                   style={{
-                    fontSize: 20,
+                    fontSize: 25,
                     color: COLOURS.backgroundDark,
                     padding: 0,
                     borderRadius: 10,
@@ -249,11 +256,106 @@ const SellerHomeScreen = () => {
               </TouchableOpacity>
             </View>
 
-            <Text style={styles.textorder}>Orders</Text>
+            <SafeAreaView style={styles.container}>
+
+            <Text style={styles.textorder2}>Orders</Text>
+
+            </SafeAreaView>
+            
+            <View
+              style={{
+                marginTop: 55,
+                borderBottomColor: "#222D31",
+                borderBottomWidth: 2,
+              }}
+            />
+
+
+            <View style={styles.header}>
+            
+            <Text style={styles.textorder}>Order #1825</Text>
+
+            <CustomButton7 text="Accept" />
+          
+            <CustomButton7 text="Decline" />
+          
+            </View>
 
             <View
               style={{
-                marginTop: 10,
+                marginTop: 5,
+                borderBottomColor: "#222D31",
+                borderBottomWidth: 2,
+              }}
+            />
+
+            <View style={styles.header}>
+            
+            <Text style={styles.textorder}>Order #1315</Text>
+
+            <CustomButton7 text="Accept" />
+          
+            <CustomButton7 text="Decline" />
+          
+            </View>
+
+            <View
+              style={{
+                marginTop: 5,
+                borderBottomColor: "#222D31",
+                borderBottomWidth: 2,
+              }}
+            />
+
+            <View style={styles.header}>
+         
+            <Text style={styles.textorder}>Order #3225</Text>
+
+            <CustomButton7 text="Accept" />
+          
+            <CustomButton7 text="Decline" />
+          
+            </View>
+
+            <View
+              style={{
+                marginTop: 5,
+                borderBottomColor: "#222D31",
+                borderBottomWidth: 2,
+              }}
+            />
+
+            <View style={styles.header}>
+         
+            <Text style={styles.textorder}>Order #1025</Text>
+
+            <CustomButton7 text="Accept" />
+          
+            <CustomButton7 text="Decline" />
+          
+            </View>
+
+            <View
+              style={{
+                marginTop: 5,
+                borderBottomColor: "#222D31",
+                borderBottomWidth: 2,
+              }}
+            />
+
+            <View style={styles.header}>
+         
+            <Text style={styles.textorder}>Order #9125</Text>
+
+            <CustomButton7 text="Accept" />
+          
+            <CustomButton7 text="Decline" />
+          
+            </View>
+
+            <View
+              style={{
+                marginTop: 5,
                 borderBottomColor: "#222D31",
                 borderBottomWidth: 2,
               }}
@@ -304,7 +406,18 @@ const styles = StyleSheet.create({
     alignSelf: "left",
     fontWeight: "bold",
     fontSize: 25,
-    color: "black",
+    color: "#303345",
+    marginTop: 10,
+    marginHorizontal: 10,
+    marginBottom: 10,
+  },
+  textorder2: {
+    textAlign: "left",
+    alignSelf: "left",
+    fontWeight: "bold",
+    padding: 8,
+    fontSize: 25,
+    color: '#B4C2C8',
     marginTop: 10,
     marginHorizontal: 10,
   },

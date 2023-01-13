@@ -73,4 +73,38 @@ export const Items = [
       require("../../../assets/images/MilkAndHoney.png"),
     ],
   },
+
+  {
+    id: 5,
+    category: "promo",
+    productName: "Reading Together",
+    productPrice: 30,
+    description:
+      "Reading Together is the essential guide for parents interested in starting a book club with their kids and raising their children to become book-loving adults.",
+    isOff: true,
+    offPercentage: 15,
+    productImage: require("../../../assets/images/raed.jpeg"),
+    productImageList: [
+      require("../../../assets/images/raed.jpeg"),
+      require("../../../assets/images/raed.jpeg"),
+      require("../../../assets/images/raed.jpeg"),
+    ],
+  },
+
+  {
+    id: 6,
+    category: "promo",
+    productName: "Sapiens: A brief history of Humankind",
+    productPrice: 32,
+    description:
+      "In this bold and provocative book, Yuval Noah Harari explores who we are, how we got here and where we’re going.",
+    isOff: true,
+    offPercentage: 25,
+    productImage: require("../../../assets/images/sapiens.jpeg"),
+    productImageList: [
+      require("../../../assets/images/sapiens.jpeg"),
+      require("../../../assets/images/sapiens.jpeg"),
+      require("../../../assets/images/sapiens.jpeg"),
+    ],
+  },
 ];
